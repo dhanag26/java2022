@@ -1,0 +1,180 @@
+package Utility;
+
+
+	package utility;
+
+	import java.util.Hashtable;
+	import java.util.concurrent.TimeUnit;
+
+	import org.openqa.selenium.By;
+	import org.openqa.selenium.WebDriver;
+	import org.openqa.selenium.WebElement;
+	import org.openqa.selenium.chrome.ChromeDriver;
+	import org.openqa.selenium.firefox.FirefoxDriver;
+	import org.openqa.selenium.interactions.Actions;
+	public class SeleniumOperation2 
+
+	{
+		public static Hashtable<String,Object> outputparameters=new Hashtable<String,Object>();
+		public static WebDriver driver =null;
+		private static String[] inputparameters;
+		//Browserlaunch
+		public static Hashtable<String,Object>browserLaunch(Object[]inputparameters)
+	{
+			try{
+		String strkey=(String) inputparameters[0];
+		String strvalue=(String) inputparameters[1];
+		
+		if(strkey.equalsIgnoreCase("Chrome"))
+		{	
+		System.setProperty("webdriver.chrome.driver",strvalue);
+		 driver=new ChromeDriver();
+		 driver.manage().window().maximize();
+		 driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		return outputparameters;
+		}
+		else if(strkey.equalsIgnoreCase("FF"))
+		{
+			System.setProperty("webdriver.gecko.driver",strvalue);
+			 driver=new FirefoxDriver();
+			 driver.manage().window().maximize();
+			 driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		}
+		outputparameters.put("STATUS", "PASS");
+		outputparameters.put("MESSAGE", "Action; Browser Launch,Input Giver:"+inputparameters[0].toString());
+			
+		}
+			catch(Exception e)
+			{
+				outputparameters.put("STATUS", "FAIL");
+				outputparameters.put("MESSAGE", "Action; Browser Launch,Input Giver:"+inputparameters[0].toString());
+			}
+				return outputparameters;
+			}
+		
+		//applicationlaunch
+		public static Hashtable<String,Object> applicationLaunch()
+		{
+			
+			try
+			{
+			String strURL=(String) inputparameters[0];;
+			driver.get(strURL);
+			 driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+			 
+			 outputparameters.put("STATUS", "PASS");
+				outputparameters.put("MESSAGE", "Action; ,applicationLaunch Input Giver:"+inputparameters[0].toString());
+			}
+			catch(Exception e)
+			{
+			outputparameters.put("STATUS", "FAIL");
+			outputparameters.put("MESSAGE", "Action; applicationLaunch,Input Giver:"+inputparameters[0].toString());
+			}
+			return outputparameters;
+		}
+		
+		//clickonelement
+		public static Hashtable<String, Object> clickonElement(Object[]inputparameters) throws InterruptedException 
+		{
+			try
+			{
+			 driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+			String XPATH=(String) inputparameters[0];
+			WebElement web1=driver.findElement(By.xpath(XPATH));
+			web1.click();
+			
+			 outputparameters.put("STATUS", "PASS");
+				outputparameters.put("MESSAGE", "Action; ,clickonElement Input Giver:"+inputparameters[0].toString());
+			}
+			catch(Exception e)
+			{
+			outputparameters.put("STATUS", "FAIL");
+			outputparameters.put("MESSAGE", "Action; clickonElement,Input Giver:"+inputparameters[0].toString());
+			}
+					return outputparameters;
+		}
+		//mouseover
+		public static Hashtable<String, Object> mouseOver(Object[]inputparameters)
+		{
+			try
+			{
+			driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+			String XPATH=(String) inputparameters[0];
+			Actions act=new Actions(driver);
+			WebElement web=driver.findElement(By.xpath(XPATH));
+			web.click();
+			act.moveToElement(web).build().perform();
+			
+			outputparameters.put("STATUS", "PASS");
+				outputparameters.put("MESSAGE", "Action; ,mouseOver Input Giver:"+inputparameters[0].toString());
+			}
+			catch(Exception e)
+			{
+			outputparameters.put("STATUS", "FAIL");
+			outputparameters.put("MESSAGE", "Action; mouseOver,Input Giver:"+inputparameters[0].toString());
+			}
+			
+			return outputparameters;
+			
+		}
+
+		//sendkeys
+			public static Hashtable<String, Object> sendkeys(Object[]inputparameters)
+			{
+				try
+				{
+					driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);	
+				String XPATH=(String) inputparameters[0];
+				String strabc=(String) inputparameters[1];
+				driver.findElement(By.xpath(XPATH)).sendKeys(strabc);
+			
+				outputparameters.put("STATUS", "PASS");
+				outputparameters.put("MESSAGE", "Action; ,sendkeys Input Giver:"+inputparameters[1].toString());
+				}
+				catch(Exception e)
+				{
+				outputparameters.put("STATUS", "FAIL");
+				outputparameters.put("MESSAGE", "Action; sendkeys,Input Giver:"+inputparameters[1].toString());
+				}
+				return outputparameters;
+			}
+			//validation
+			public static Hashtable<String, Object> validation(Object[]inputparameters)
+			{
+				
+					driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+					String XPATH=(String) inputparameters[0];
+					String text=(String) inputparameters[1];
+					String actualText=driver.findElement(By.xpath(XPATH)).getText(); //name
+					try
+					{
+						if(actualText.equalsIgnoreCase(text));
+						{
+							
+						System.out.println("Test Case Pass");
+						
+						}
+						else
+						{
+						System.out.println("Test Case Fail");	
+					}
+					
+						outputparameters.put("STATUS", "PASS");
+						outputparameters.put("MESSAGE", "Action; ,validation Input Giver:"+inputparameters[1].toString());
+					}
+					
+		
+			catch(Exception e)
+					{
+			outputparameters.put("STATUS", "FAIL");
+			outputparameters.put("MESSAGE", "Action; validation,Input Giver:"+inputparameters[1].toString());		
+			}
+					return outputparameters;
+			}
+	}
+		
+		
+			
+
+
+

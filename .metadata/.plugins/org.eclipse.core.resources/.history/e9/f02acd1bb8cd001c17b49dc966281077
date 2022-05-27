@@ -1,0 +1,23 @@
+package Utility;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Temp
+{
+
+	public static void main(String[]args)
+	{
+		System.setProperty("webdriver.chrome.driver", "D:\\AutomationSupport\\chromedriver.exe");
+		
+		ChromeDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		
+		driver.get("https://www.flipkart.com/");
+		
+		
+	}
+	
+	
+	
+	
+}

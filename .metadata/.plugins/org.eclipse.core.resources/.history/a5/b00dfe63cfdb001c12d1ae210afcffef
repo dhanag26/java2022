@@ -1,0 +1,23 @@
+package one;
+
+public class Demo
+{
+	
+public static void main(String[]args)
+{
+	for(int a=87; a<90; a++)
+	{
+		System.out.println(a);
+	}
+	
+	int a=87;
+	
+		while(a<90)
+		{	
+			System.out.println(a);
+			a++;
+			
+		}
+	
+}
+}

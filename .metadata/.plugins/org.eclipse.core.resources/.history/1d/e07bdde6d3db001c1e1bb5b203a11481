@@ -1,0 +1,18 @@
+package one;
+
+public class Stringclass {
+	
+	public static void main(String[]args)
+	{
+		String a="Ahmedabad";
+		
+		System.out.println(a.length());
+		
+		
+		
+		
+		
+		
+
+}
+}

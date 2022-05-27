@@ -1,0 +1,14 @@
+package one;
+
+public class Demo
+{
+public static void main(String[]args)
+{
+	for(int a=87; a<90; a++);
+	{
+		System.out.println(a);
+	}
+	
+	
+}
+}
